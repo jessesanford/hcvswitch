@@ -108,23 +108,23 @@ hcv_eval() {
         skip="$(hcv_conf ignore_ssl | tr '[:upper:]' '[:lower:]')"
         if [ "$skip" == "true" ] ; then
             VAULT_SKIP_VERIFY='1'
-            echo "export VAULT_SKIP_VERIFY=${VAULT_SKIP_VERIFY}"
+            echo "export VAULT_SKIP_VERIFY=${VAULT_SKIP_VERIFY};"
         else
-            echo "unset VAULT_SKIP_VERIFY"
+            echo "unset VAULT_SKIP_VERIFY;"
         fi
         sni="$(hcv_conf sni)"
         if [ ! -z "$sni" ] && [ "$sni" != "hostname" ] ; then
-            echo "export VAULT_TLS_SERVER_NAME=${sni}"
+            echo "export VAULT_TLS_SERVER_NAME=${sni};"
         else
-            echo "unset VAULT_TLS_SERVER_NAME"
+            echo "unset VAULT_TLS_SERVER_NAME;"
         fi
-        echo "export HCV_ENV=$(head -n 1 "$HCVSWITCH_CURRENT" | cut -f 2 -d '#')"
-        echo "export VAULT_ADDR=${VAULT_ADDR}"
+        echo "export HCV_ENV=$(head -n 1 "$HCVSWITCH_CURRENT" | cut -f 2 -d '#');"
+        echo "export VAULT_ADDR=${VAULT_ADDR};"
     else
-        echo "export HCV_ENV=none"
-        echo "unset VAULT_ADDR"
-        echo "unset VAULT_TLS_SERVER_NAME"
-        echo "unset VAULT_SKIP_VERIFY"
+        echo "export HCV_ENV=none;"
+        echo "unset VAULT_ADDR;"
+        echo "unset VAULT_TLS_SERVER_NAME;"
+        echo "unset VAULT_SKIP_VERIFY;"
     fi
 }
 
